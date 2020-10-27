@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-native';
 import { Button, CardItem, Container, Card, Form, Item, Label, Input } from 'native-base';
 import { Text, StyleSheet, TextInput, } from 'react-native';
 
@@ -9,6 +10,10 @@ export default class Login extends React.Component {
         this.state = {
             username: '',
             password: '',
+            signIn: true,
+            name: '',
+            lastname: '',
+            gender: ''
         }
     }
 
@@ -23,39 +28,114 @@ export default class Login extends React.Component {
         return (
             <Container style={styles.viewContent}>
 
-                <Card style={styles.cardContent}>
-                    <CardItem header style={styles.cardHeaderContent}>
-                        <Text style={styles.cardHeaderText}> Bienvenido a Fix It</Text>
-                    </CardItem>
-                    <CardItem>
-                        <Item rounded style={styles.cardHeaderContent}>
-                            <Input
-                                placeholder='Username'
-                                name='username'
-                                value={this.state.username}
-                                onChangeText={e => this.setState({ username: e })} />
-                        </Item>
+                {this.state.signIn ?
+                    <Card style={styles.cardContent}>
+                        <CardItem header style={styles.cardHeaderContent}>
+                            <Text style={styles.cardHeaderText}> Bienvenido a Fix It</Text>
+                            <Button transparent onPress={()=> {this.setState({ signIn: false})}}>
+                                <Text> Sign in </Text>
+                            </Button>
+                        </CardItem>
 
-                    </CardItem>
-                    <CardItem >
-                        <Item rounded style={styles.cardHeaderContent}>
-                            <Input
-                                placeholder='Password'
-                                secureTextEntry={true}
-                                name='password'
-                                value={this.state.password}
-                                onChangeText={e => this.setState({ password: e })} />
-                        </Item>
-                    </CardItem>
+                        <CardItem>
+                            <Item rounded style={styles.cardHeaderContent}>
+                                <Input
+                                    placeholder='Username'
+                                    name='username'
+                                    value={this.state.username}
+                                    onChangeText={e => this.setState({ username: e })} />
+                            </Item>
 
-                    <CardItem style={styles.CardItem}>
-                        <Button bordered light style={styles.submitButton}
-                            onPress={() => this.handleSubmit()}>
-                            <Text> Sign in </Text>
-                        </Button>
+                        </CardItem>
+                        <CardItem >
+                            <Item rounded style={styles.cardHeaderContent}>
+                                <Input
+                                    placeholder='Password'
+                                    secureTextEntry={true}
+                                    name='password'
+                                    value={this.state.password}
+                                    onChangeText={e => this.setState({ password: e })} />
+                            </Item>
+                        </CardItem>
+                        <CardItem style={styles.CardItem}>
+                            <Button bordered light style={styles.submitButton}
+                                onPress={() => this.handleSubmit()}>
+                                <Text> Log In </Text>
+                            </Button>
 
-                    </CardItem>
-                </Card>
+                        </CardItem>
+                    </Card>
+
+                    :
+                    <Card style={styles.cardContent}>
+                        <CardItem header style={styles.cardHeaderContent}>
+                            <Text style={styles.cardHeaderText}> Bienvenido a Fix It</Text>
+                            <Button transparent>
+                                <Text> Sign in </Text>
+                            </Button>
+                        </CardItem>
+                        <CardItem>
+                            <Item rounded style={styles.cardHeaderContent}>
+                                <Input
+                                    placeholder='Name'
+                                    name='name'
+                                    value={this.state.name}
+                                    onChangeText={e => this.setState({ name: e })} />
+                            </Item>
+
+                        </CardItem>
+                        <CardItem>
+                            <Item rounded style={styles.cardHeaderContent}>
+                                <Input
+                                    placeholder='Lastname'
+                                    name='lastname'
+                                    value={this.state.lastname}
+                                    onChangeText={e => this.setState({ lastname: e })} />
+                            </Item>
+
+                        </CardItem>
+                        <CardItem>
+                            <Item rounded style={styles.cardHeaderContent}>
+                                <Input
+                                    placeholder='Gender'
+                                    name='gender'
+                                    value={this.state.gender}
+                                    onChangeText={e => this.setState({ gender: e })} />
+                            </Item>
+
+                        </CardItem>
+
+                        <CardItem>
+                            <Item rounded style={styles.cardHeaderContent}>
+                                <Input
+                                    placeholder='Username'
+                                    name='username'
+                                    value={this.state.username}
+                                    onChangeText={e => this.setState({ username: e })} />
+                            </Item>
+
+                        </CardItem>
+                        <CardItem >
+                            <Item rounded style={styles.cardHeaderContent}>
+                                <Input
+                                    placeholder='Password'
+                                    secureTextEntry={true}
+                                    name='password'
+                                    value={this.state.password}
+                                    onChangeText={e => this.setState({ password: e })} />
+                            </Item>
+                        </CardItem>
+                        <CardItem style={styles.CardItem}>
+                            <Button bordered light style={styles.submitButton}
+                                onPress={() => this.handleSubmit()}>
+                                <Text> Log In </Text>
+                            </Button>
+
+                        </CardItem>
+                    </Card>
+
+                }
+
 
 
             </Container>
@@ -89,7 +169,7 @@ const styles = StyleSheet.create({
     formContent: {
         width: '60%',
     },
-    CardItem:{
+    CardItem: {
         justifyContent: 'center',
         alignContent: 'center',
         textAlign: 'center',
@@ -98,7 +178,7 @@ const styles = StyleSheet.create({
         width: '50%',
         borderRadius: 20,
         borderColor: '#654889',
-        justifyContent:'center',
+        justifyContent: 'center',
         alignItems: 'center'
     },
 })
