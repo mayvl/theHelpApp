@@ -25,7 +25,7 @@ SECRET_KEY = 'ch#j-un0hf%rw8eiy=0rg%zw0t6le=q+0%w&-rizgeo6z3jvj-'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.0.109']
 
 
 # Application definition
@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'django_countries',
 
     # LOCAL
-    
+
 
 ]
 
@@ -135,5 +135,32 @@ REST_FRAMEWORK = {
     # or allow read-only access for unauthenticated users.
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
-    ]
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
 }
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:8000",
+    "http://192.168.0.109:8000",
+    "http://192.168.0.109:8081",
+    "http://localhost:8081"
+]
+
+GRAPH_MODELS = {
+    'all_applications': True,
+    'group_models': True,
+}
+
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = True
+CORS_ORIGIN_WHITELIST = [
+    'http://localhost:3030',
+    "http://192.168.0.109:8000",
+    "http://192.168.0.109:8081",
+]
+CORS_ORIGIN_REGEX_WHITELIST = [
+    'http://localhost:3030',
+]

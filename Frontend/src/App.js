@@ -25,7 +25,7 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 
 import { NativeRouter, Route, Link } from 'react-router-native';
-import Login from './pages/login/login';
+import Login from '../android/app/src/main/pages/login/login';
 
 const Home = () => <Text style={styles.header}>Home</Text>;
 
